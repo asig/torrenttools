@@ -1,5 +1,7 @@
 # Binaries for programs and plugins
+torrentdumper
 torrentcleaner
+torrentlister
 *.exe
 *.dll
 *.so
