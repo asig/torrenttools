@@ -57,23 +57,18 @@ func readFiles(dir string, m map[string]bool) {
 }
 
 func askDelete() bool {
-	res := false
 	for {
 		fmt.Print("Delete? (Y/n) ")
 		var input string
-		if _, err := fmt.Scanln(&input); err != nil {
-			if input == "y" || input == "Y" || input == "" {
-				res = true
-				break
-			} else if input == "n" || input == "N" {
-				res = false
-				break
-			} else {
-				fmt.Println("I'm sorry, but I don't understand your choice.")
-			}
+		fmt.Scanln(&input);
+		if input == "y" || input == "Y" || input == "" {
+			return true
+		} else if input == "n" || input == "N" {
+			return false
+		} else {
+			fmt.Println("I'm sorry, but I don't understand your choice.")
 		}
 	}
-	return res
 }
 
 func listFiles(files []string) {
@@ -102,9 +97,8 @@ func main() {
 	}
 
 	filesInTorrent := make(map[string]bool)
-	r := torrentFile.Name()
 	for _, f := range torrentFile.Files() {
-		filesInTorrent[filepath.Join(contentDir, r, f)] = true
+		filesInTorrent[filepath.Join(contentDir, f)] = true
 	}
 
 	filesInDirectory := make(map[string]bool)
